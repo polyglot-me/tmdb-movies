@@ -13,6 +13,7 @@
     .progress {
       width: 37px;
       height: 37px;
+      background-color: #262631 !important;
       .progress-value {
         font-size: 14px;
       }
@@ -77,8 +78,14 @@
 
 @media #{$screen-sm} {
   .navbar-dark {
+    flex-direction: row-reverse;
+    justify-content: space-between;
     height: auto;
     padding: 10px 20px;
+
+    .navbar-brand {
+      margin: auto;
+    }
   }
   .movies {
     padding: 10px 20px;

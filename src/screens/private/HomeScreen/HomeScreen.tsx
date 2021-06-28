@@ -1,12 +1,12 @@
 import logo from "../../../assets/logo.png";
 import MovieTile from "./MovieTile";
 
+import { toast } from "react-toastify";
 import { Search } from "react-bootstrap-icons";
 import { ClearAuth } from "../../../store/Auth/AuthAction";
 import { useDispatch } from "react-redux";
-
 import { Container, Navbar, Nav, Row } from "react-bootstrap";
-import { toast } from "react-toastify";
+
 const HomeScreen = (props: any) => {
   const dispatch = useDispatch();
   const logout = () => {
@@ -53,7 +53,7 @@ const HomeScreen = (props: any) => {
             </a>
             <a
               className="mx-1 mx-lg-2 mt-2 mt-lg-0 nav-btn btn btn-movie-planet-secondary"
-              href=""
+              href="/"
               onClick={() => logout()}
             >
               Logout
