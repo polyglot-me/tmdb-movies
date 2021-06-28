@@ -1,3 +1,4 @@
+import moment from "moment";
 import axios from "axios";
 import { Dispatch } from "redux";
 import { LoadMoviesSuccess } from "../../../store/Movies/MoviesAction";
@@ -19,11 +20,14 @@ const fetchMovies = (page: number, age: number): any => {
     upToCertificate = "R";
   }
   const params = {
-    certification_country: "US",
+    page: page,
     sort_by: "popularity.desc",
     include_adult: false,
+    certification_country: "US",
     "certification.lte": upToCertificate,
-    page: page,
+    "primary_release_date.gte": moment()
+      .subtract(3, "year")
+      .format("YYYY-MM-DD"),
   };
   return (dispatch: Dispatch): Promise<any> =>
     new Promise((resolve, reject) => {
