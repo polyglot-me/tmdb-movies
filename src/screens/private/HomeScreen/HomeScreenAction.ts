@@ -7,19 +7,38 @@ import {
   GET_POPULAR_MOVIES,
   IMAGE_DEFAULT_WIDTH,
 } from "../../../utils/constants";
+import noMovieImage from "../../../assets/no-movie-image.png";
 
-const fetchMovies = (page: number): any => {
+const fetchMovies = (page: number, age: number): any => {
+  let upToCertificate = "G";
+  if (age > 5 && age <= 13) {
+    upToCertificate = "PG";
+  } else if (age > 13 && age <= 18) {
+    upToCertificate = "PG-13";
+  } else if (age >= 18) {
+    upToCertificate = "R";
+  }
+  const params = {
+    certification_country: "US",
+    sort_by: "popularity.desc",
+    include_adult: false,
+    "certification.lte": upToCertificate,
+    page: page,
+  };
   return (dispatch: Dispatch): Promise<any> =>
     new Promise((resolve, reject) => {
       axios
-        .get(`${GET_POPULAR_MOVIES}?api_key=${API_KEY}&page=${page}`)
+        .get(`${GET_POPULAR_MOVIES}?api_key=${API_KEY}`, { params })
         .then((response: any) => {
           const payload = response.data;
           const movies = payload.results.map((movieData: any) => {
+            const posterUrl = movieData.poster_path
+              ? `${IMAGE_BASE_URL}/${IMAGE_DEFAULT_WIDTH}/${movieData.poster_path}`
+              : noMovieImage;
             return {
               id: movieData.id,
               title: movieData.title,
-              imageUrl: `${IMAGE_BASE_URL}/${IMAGE_DEFAULT_WIDTH}/${movieData.poster_path}`,
+              imageUrl: posterUrl,
               releaseDate: movieData.release_date,
               avgVotePercentage: movieData.vote_average * 10,
             };

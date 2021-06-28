@@ -24,7 +24,7 @@ const HomeScreen = ({ authState, movieState }: any) => {
   const loadMoreMovies = () => {
     setIsFetching(true);
     const nextPage = currentPage + 1;
-    dispatch(fetchMovies(nextPage))
+    dispatch(fetchMovies(nextPage, currentUser.age))
       .then(() => {
         setIsFetching(false);
       })
@@ -105,30 +105,32 @@ const HomeScreen = ({ authState, movieState }: any) => {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      <Container fluid className="movies">
-        <h3>Popular Movies</h3>
-        <Row>
-          {movies.map((movie: Movie) => {
-            return <MovieTile key={movie.id} movie={movie} />;
-          })}
-        </Row>
-        <Row className="d-flex justify-content-center mt-3">
-          {currentPage < totalPages && (
-            <Row className="col-lg-2 col-sm-6">
-              <LoadingButton
-                text="Load more"
-                type="submit"
-                variant="movie-planet"
-                loadingText="Loading..."
-                isLoading={isFetching}
-                size="lg"
-                block={true}
-                disabled={isFetching}
-                onClick={() => loadMoreMovies()}
-              />
-            </Row>
-          )}
-        </Row>
+      <Container fluid>
+        <div className="movies">
+          <h3>Popular Movies</h3>
+          <Row>
+            {movies.map((movie: Movie) => {
+              return <MovieTile key={movie.id} movie={movie} />;
+            })}
+          </Row>
+          <Row className="d-flex justify-content-center mt-3">
+            {currentPage < totalPages && (
+              <Row className="col-lg-2 col-sm-6">
+                <LoadingButton
+                  text="Load more"
+                  type="submit"
+                  variant="movie-planet"
+                  loadingText="Loading..."
+                  isLoading={isFetching}
+                  size="lg"
+                  block={true}
+                  disabled={isFetching}
+                  onClick={() => loadMoreMovies()}
+                />
+              </Row>
+            )}
+          </Row>
+        </div>
       </Container>
     </>
   );
