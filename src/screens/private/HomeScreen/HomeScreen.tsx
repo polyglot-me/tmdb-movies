@@ -1,20 +1,11 @@
-import logo from "../../assets/logo.png";
-import movie from "../../assets/movie.jpeg";
-import ProgressCircle from "../../components/ProgressCircle/ProgressCircle";
+import logo from "../../../assets/logo.png";
+import MovieTile from "./MovieTile";
 
-import { ClearAuth } from "../../store/Auth/AuthAction";
+import { Search } from "react-bootstrap-icons";
+import { ClearAuth } from "../../../store/Auth/AuthAction";
 import { useDispatch } from "react-redux";
-import { Search, ThreeDots } from "react-bootstrap-icons";
 
-import {
-  Container,
-  Button,
-  Navbar,
-  Card,
-  Nav,
-  Row,
-  Col,
-} from "react-bootstrap";
+import { Container, Navbar, Nav, Row } from "react-bootstrap";
 import { toast } from "react-toastify";
 const HomeScreen = (props: any) => {
   const dispatch = useDispatch();
@@ -74,23 +65,7 @@ const HomeScreen = (props: any) => {
         <h3>Popular Movies</h3>
         <Row>
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => {
-            return (
-              <Col key={i} className="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                <Card className="movie-tile">
-                  <span className="movie-more-option">
-                    <ThreeDots size={18} />
-                  </span>
-                  <Card.Img variant="top" src={movie} />
-                  <ProgressCircle percentage={84} />
-                  <Card.Body>
-                    <Card.Title className="">Godzilla vs KingKong</Card.Title>
-                    <Card.Text className="secondary-text">
-                      March 24, 2021
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-            );
+            return <MovieTile key={i} />;
           })}
         </Row>
       </Container>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import HomeScreen from "./screens/private/HomeScreen";
 
 import { connect } from "react-redux";
+import { HomeScreen } from "./screens/private/HomeScreen";
 import { LoginScreen } from "./screens/public/Login";
 import { RegisterScreen } from "./screens/public/Register";
 
@@ -21,6 +21,9 @@ function App({ authState }: any) {
     <div className="app">
       <Router>
         <Switch>
+          <Route path="/">
+            <HomeScreen />
+          </Route>
           {currrentUser ? (
             <>
               <Route path="/">
