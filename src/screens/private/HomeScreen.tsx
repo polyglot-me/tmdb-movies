@@ -38,7 +38,7 @@ const HomeScreen = (props: any) => {
               Movies
             </Nav.Link>
             <Nav.Link className="px-2 px-lg-4" href="/tvshows">
-              TVShows
+              TV Shows
             </Nav.Link>
             <Nav.Link className="px-2 px-lg-4" href="/people">
               People
