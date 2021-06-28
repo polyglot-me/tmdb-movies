@@ -24,15 +24,21 @@ function App({ authState }: any) {
           {currrentUser ? (
             <>
               <Route path="/">
+                <Redirect to='/movies'></Redirect>
+              </Route>
+              <Route path="/movies">
                 <HomeScreen />
               </Route>
             </>
           ) : (
             <>
-              <Route strict={true} path="/login">
+              <Route path="/" exact>
+                <Redirect to='/login'></Redirect>
+              </Route>
+              <Route path='/login' exact>
                 <LoginScreen />
               </Route>
-              <Route strict={true} path="/register">
+              <Route strict={true} path="/register" exact>
                 <RegisterScreen />
               </Route>
             </>

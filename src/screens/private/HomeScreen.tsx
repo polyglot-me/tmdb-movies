@@ -8,7 +8,6 @@ import { Search, ThreeDots } from "react-bootstrap-icons";
 
 import {
   Container,
-  Button,
   Navbar,
   Card,
   Nav,
@@ -62,7 +61,7 @@ const HomeScreen = (props: any) => {
             </a>
             <a
               className="mx-1 mx-lg-2 mt-2 mt-lg-0 nav-btn btn btn-movie-planet-secondary"
-              href=""
+              href="/"
               onClick={() => logout()}
             >
               Logout
