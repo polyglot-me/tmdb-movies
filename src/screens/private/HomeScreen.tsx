@@ -24,6 +24,11 @@ const HomeScreen = (props: any) => {
   return (
     <>
       <Navbar expand="lg" variant="dark">
+        <Nav className="mr-auto">
+          <Nav.Link className="px-2 px-lg-4" href="#search">
+            <Search size={19} />
+          </Nav.Link>
+        </Nav>
         <Navbar.Brand href="/home">
           <img
             src={logo}
@@ -50,7 +55,7 @@ const HomeScreen = (props: any) => {
         </Navbar.Collapse>
         <Navbar.Collapse className="justify-content-end">
           <Nav className="mr-auto">
-            <Nav.Link className="px-2 px-lg-4" href="#search">
+            <Nav.Link className="px-2 px-lg-4 search-icon" href="#search">
               <Search size={19} />
             </Nav.Link>
             <a
