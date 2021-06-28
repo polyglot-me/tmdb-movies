@@ -28,6 +28,10 @@
   background-color: $secondary-color;
   border-bottom: 1px solid #262631;
   .navbar-nav {
+    .mbl-search-icon {
+      display: none;
+    }
+
     a {
       font-size: 18px;
       &.active {
@@ -83,8 +87,13 @@
     height: auto;
     padding: 10px 20px;
 
-    .search-icon {
-      display: none;
+    .navbar-nav {
+      .mbl-search-icon {
+        display: block;
+      }
+      .search-icon {
+        display: none;
+      }
     }
 
     .navbar-brand {

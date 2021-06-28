@@ -26,7 +26,7 @@ const HomeScreen = ({ authState }: any) => {
     <>
       <Navbar expand="lg" variant="dark">
         <Nav className="mr-auto">
-          <Nav.Link className="px-2 px-lg-4" href="#search">
+          <Nav.Link className="px-2 px-lg-4 mbl-search-icon" href="#search">
             <Search size={19} />
           </Nav.Link>
         </Nav>
