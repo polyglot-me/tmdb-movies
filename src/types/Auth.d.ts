@@ -18,4 +18,4 @@ interface ClearAuthAction {
   type: string;
 }
 
-type AuthActionTypes = StoreAuthAction | ClearAuthAction;
+export type AuthActionTypes = StoreAuthAction | ClearAuthAction;

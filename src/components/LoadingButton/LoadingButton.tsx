@@ -8,7 +8,8 @@ const LoadingButton = (props: LoadingButtonProps) => (
     disabled={props.disabled}
     block={props.block}
     size={props.size}
-    type="submit"
+    onClick={props.onClick}
+    type={props.type}
   >
     {(props.isLoading && (
       <span>

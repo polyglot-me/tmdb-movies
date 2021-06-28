@@ -8,4 +8,5 @@ export interface LoadingButtonProps {
   isLoading?: boolean | undefined;
   loadingText: string;
   isFormDirty?: boolean;
+  onClick?: any;
 }

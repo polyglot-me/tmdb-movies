@@ -29,7 +29,7 @@ const LoginScreen = ({ userState }: any) => {
             <Card className="app-auth-card">
               <Card.Body className="p-5">
                 <div className="text-center pb-4">
-                  <a href="/home">
+                  <a href="/">
                     <img src={logo} className="rounded login-logo" alt="logo" />
                   </a>
                 </div>

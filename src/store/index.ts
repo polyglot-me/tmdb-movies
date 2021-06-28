@@ -1,6 +1,6 @@
 import thunk from "redux-thunk";
 import storage from "redux-persist/lib/storage";
-import rootReducer from "./reducers";
+import rootReducer from "./RootReducer";
 
 import { persistReducer, persistStore } from "redux-persist";
 import { applyMiddleware, createStore } from "redux";

@@ -1,23 +1,52 @@
 import logo from "../../../assets/logo.png";
 import "./HomeScreenStyle.scss";
 import MovieTile from "./MovieTile";
+import LoadingButton from "../../../components/LoadingButton";
 
 import { toast } from "react-toastify";
+import { Movie } from "../../../types";
 import { Search } from "react-bootstrap-icons";
 import { connect } from "react-redux";
 import { ClearAuth } from "../../../store/Auth/AuthAction";
 import { useDispatch } from "react-redux";
 import { Container, Navbar, Nav, Row } from "react-bootstrap";
 import { useEffect, useState } from "react";
+import { fetchMovies } from "./HomeScreenAction";
 
-const HomeScreen = ({ authState }: any) => {
+const HomeScreen = ({ authState, movieState }: any) => {
   const dispatch = useDispatch();
+  const [isFetching, setIsFetching] = useState(false);
   const [currentUser, setCurrentUser] = useState(authState?.data || {});
+  const [movies, setMovies] = useState(movieState.data);
+  const [currentPage, setCurrentPage] = useState(movieState.currentPage);
+  const [totalPages, setTotalPages] = useState(movieState.totalPages);
+
+  const loadMoreMovies = () => {
+    setIsFetching(true);
+    const nextPage = currentPage + 1;
+    dispatch(fetchMovies(nextPage))
+      .then(() => {
+        setIsFetching(false);
+      })
+      .catch((errMsg: string) => {
+        toast.error(errMsg);
+      });
+  };
+
+  useEffect(() => {
+    loadMoreMovies();
+  }, []);
 
   useEffect(() => {
     const user = authState?.data || {};
     setCurrentUser(user);
   }, [authState]);
+
+  useEffect(() => {
+    setMovies(movieState.data);
+    setCurrentPage(movieState.currentPage);
+    setTotalPages(movieState.totalPages);
+  }, [movieState]);
 
   const logout = () => {
     dispatch(ClearAuth());
@@ -31,7 +60,7 @@ const HomeScreen = ({ authState }: any) => {
             <Search size={19} />
           </Nav.Link>
         </Nav>
-        <Navbar.Brand href="/home">
+        <Navbar.Brand href="/">
           <img
             src={logo}
             alt="Movie Planet Logo"
@@ -79,9 +108,26 @@ const HomeScreen = ({ authState }: any) => {
       <Container fluid className="movies">
         <h3>Popular Movies</h3>
         <Row>
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => {
-            return <MovieTile key={i} />;
+          {movies.map((movie: Movie) => {
+            return <MovieTile key={movie.id} movie={movie} />;
           })}
+        </Row>
+        <Row className="d-flex justify-content-center mt-3">
+          {currentPage < totalPages && (
+            <Row className="col-lg-2 col-sm-6">
+              <LoadingButton
+                text="Load more"
+                type="submit"
+                variant="movie-planet"
+                loadingText="Loading..."
+                isLoading={isFetching}
+                size="lg"
+                block={true}
+                disabled={isFetching}
+                onClick={() => loadMoreMovies()}
+              />
+            </Row>
+          )}
         </Row>
       </Container>
     </>
@@ -90,5 +136,6 @@ const HomeScreen = ({ authState }: any) => {
 
 const mapStateToProps = (state: any) => ({
   authState: state.auth,
+  movieState: state.movie,
 });
 export default connect(mapStateToProps)(HomeScreen);

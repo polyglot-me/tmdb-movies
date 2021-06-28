@@ -1,2 +1,3 @@
-export * from "./User.d";
+export * from "./User";
 export * from "./Auth";
+export * from "./Movie";
