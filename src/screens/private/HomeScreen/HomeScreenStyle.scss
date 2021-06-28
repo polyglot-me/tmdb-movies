@@ -1,0 +1,102 @@
+@import "../../../styles/variables";
+@import "../../../styles/queries";
+
+.movies {
+  padding: 20px 110px !important;
+  .col {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .progress-container {
+    position: absolute;
+    width: 47px;
+    height: 47px;
+    top: 350px;
+    left: 200px;
+    .progress {
+      width: 37px;
+      height: 37px;
+      background-color: transparent !important;
+      .progress-value {
+        font-size: 14px;
+      }
+    }
+  }
+}
+.movie-tile {
+  width: 290px;
+  height: 467px;
+  border-radius: 15px !important;
+  background-color: $secondary-color !important;
+  padding: 20px;
+
+  .card-title {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .movie-more-option {
+    width: 22px;
+    height: 22px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 35px;
+    right: 35px;
+    cursor: pointer;
+  }
+
+  .card-img-top {
+    border-radius: 15px;
+    height: 358px;
+  }
+}
+
+@media #{$screen-sm} {
+  .movies {
+    padding: 10px 20px !important;
+    .progress-container {
+      position: absolute;
+      width: 27px;
+      height: 27px;
+      top: 195px;
+      left: 120px;
+      .progress {
+        width: 20px;
+        height: 20px;
+        .progress-value {
+          font-size: 7px;
+        }
+      }
+    }
+  }
+  .movie-tile {
+    width: 163px;
+    height: 262px;
+    border-radius: 8.5px !important;
+    padding: 11px;
+    .card-title {
+      font-size: 9px;
+      font-weight: 500;
+    }
+
+    .movie-more-option {
+      width: 11px;
+      height: 11px;
+      top: 20px;
+      right: 20px;
+    }
+    .card-body {
+      padding: 12px 0px;
+    }
+    .secondary-text {
+      font-size: 9px;
+    }
+    .card-img-top {
+      border-radius: 8.5px;
+      height: 200px;
+    }
+  }
+}

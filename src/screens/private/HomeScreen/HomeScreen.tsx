@@ -1,4 +1,5 @@
 import logo from "../../../assets/logo.png";
+import "./HomeScreenStyle.scss";
 import MovieTile from "./MovieTile";
 
 import { toast } from "react-toastify";
