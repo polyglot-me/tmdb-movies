@@ -3,12 +3,21 @@ import MovieTile from "./MovieTile";
 
 import { toast } from "react-toastify";
 import { Search } from "react-bootstrap-icons";
+import { connect } from "react-redux";
 import { ClearAuth } from "../../../store/Auth/AuthAction";
 import { useDispatch } from "react-redux";
 import { Container, Navbar, Nav, Row } from "react-bootstrap";
+import { useEffect, useState } from "react";
 
-const HomeScreen = (props: any) => {
+const HomeScreen = ({ authState }: any) => {
   const dispatch = useDispatch();
+  const [currentUser, setCurrentUser] = useState(authState?.data || {});
+
+  useEffect(() => {
+    const user = authState?.data || {};
+    setCurrentUser(user);
+  }, [authState]);
+
   const logout = () => {
     dispatch(ClearAuth());
     toast.success("Logged out successfully");
@@ -47,9 +56,9 @@ const HomeScreen = (props: any) => {
             </Nav.Link>
             <a
               className="mx-1 mx-lg-2 mt-2 mt-lg-0 nav-btn btn btn-movie-planet"
-              href="/register"
+              href="/"
             >
-              Join
+              {currentUser.username}
             </a>
             <a
               className="mx-1 mx-lg-2 mt-2 mt-lg-0 nav-btn btn btn-movie-planet-secondary"
@@ -73,4 +82,7 @@ const HomeScreen = (props: any) => {
   );
 };
 
-export default HomeScreen;
+const mapStateToProps = (state: any) => ({
+  authState: state.auth,
+});
+export default connect(mapStateToProps)(HomeScreen);

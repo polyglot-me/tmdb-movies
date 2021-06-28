@@ -21,13 +21,10 @@ function App({ authState }: any) {
     <div className="app">
       <Router>
         <Switch>
-          <Route path="/">
-            <HomeScreen />
-          </Route>
           {currrentUser ? (
             <>
               <Route path="/">
-                <Redirect to='/movies'></Redirect>
+                <Redirect to="/movies"></Redirect>
               </Route>
               <Route path="/movies">
                 <HomeScreen />
@@ -36,9 +33,9 @@ function App({ authState }: any) {
           ) : (
             <>
               <Route path="/" exact>
-                <Redirect to='/login'></Redirect>
+                <Redirect to="/login"></Redirect>
               </Route>
-              <Route path='/login' exact>
+              <Route path="/login" exact>
                 <LoginScreen />
               </Route>
               <Route strict={true} path="/register" exact>
