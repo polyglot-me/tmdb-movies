@@ -35,11 +35,11 @@ const HomeScreen = ({ authState }: any) => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link className="px-2 px-lg-4" href="/home">
+            <Nav.Link className="px-2 px-lg-4 active" href="/home">
               Movies
             </Nav.Link>
             <Nav.Link className="px-2 px-lg-4" href="/tvshows">
-              TVShows
+              TV Shows
             </Nav.Link>
             <Nav.Link className="px-2 px-lg-4" href="/people">
               People
